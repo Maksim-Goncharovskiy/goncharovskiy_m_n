@@ -18,15 +18,11 @@ int main() {
 		double i = 0;
 		double sum = 0;
 		double f = cos(x);
-		while (true) {
+		x_n = std::pow(-1.0, i) * std::pow(x, 2 * i) / factorial(2 * i);
+		while (abs(x_n) >= pow(10.0, -3.0)) {
+			sum = sum + x_n;
+			i = i + 1;
 			x_n = std::pow(-1.0, i) * std::pow(x, 2 * i) / factorial(2 * i);
-			if (abs(x_n) >= pow(10.0, -3.0)) {
-				sum = sum + x_n;
-				i = i + 1;
-			}
-			else {
-				break;
-			}
 		}
 		std::cout << x << ' ' << sum << ' ' << f << std::endl;
 	}
