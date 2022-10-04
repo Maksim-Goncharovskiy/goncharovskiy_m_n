@@ -12,9 +12,11 @@ int main() {
 		double i = 1;
 		double sum = 0;
 		double f = (x*sin(pi/4))/(1 - 2*x*cos(pi/4));
-		while (abs(std::pow(x, i)*sin(i*pi/4)) >= pow(10.0, -3.0)) {
-			sum = sum + std::pow(x, i)*sin(i*pi/4);
+		x_n = std::pow(x, i)*sin(i*pi/4);
+		while (abs(x_n) >= pow(10.0, -3.0)) {
+			sum = sum + x_n;
 			i = i + 1;
+			x_n = std::pow(x, i)*sin(i*pi/4); 
 		}
 		std::cout << x << ' ' << sum << ' ' << f << std::endl;
 	}
