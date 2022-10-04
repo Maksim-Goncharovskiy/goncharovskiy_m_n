@@ -1,6 +1,7 @@
-#define USE_MATH_DEFINES
+#define _USE_MATH_DEFINES
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 int main() {
 	double r = 0;
 	double n = 0;
@@ -9,5 +10,5 @@ int main() {
 	std::cin >> n >> r;
 	double sinus = std::sin(pi / n);
 	R = r * (sinus / (1 - sinus));
-    std::cout << R;
+    std::cout << std::fixed << std::setprecision(8) << R;
 }
