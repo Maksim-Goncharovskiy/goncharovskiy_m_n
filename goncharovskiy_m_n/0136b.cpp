@@ -1,3 +1,4 @@
+//Задача Тернарная Логика
 #include <iostream>
 #include <vector>
 #include <cmath>
