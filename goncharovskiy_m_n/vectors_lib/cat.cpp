@@ -4,38 +4,38 @@
 #include <cmath>
 #include <iomanip>
 
-int main(Rdec2D r_m, Rdec2D r_c, Rdec2D v_m, Rdec2D v_c, double CatRad, double v0) {
+int main() {
 	Rdec2D r_m;
 	Rdec2D r_c;
 	Rdec2D v_c;
 	double radius = 3; 
     
     	double last;
-    	last = norm(r_m - r_c);
+    	last = lengh(r_m - r_c);
     	double dt = 0.01;
-    	double count_t = 0;
+    	double counter = 0;
     	
 	r_m = r_m + v_m * dt;
     	r_c = r_c + v_c * dt;
-    	v_c = (r_m - r_c) * (1 / norm(r_m - r_c)) * v0;
-    	count_t += dt;
+    	v_c = (r_m - r_c) * (1 / lengh(r_m - r_c));
+    	counter += dt;
 
-    	while ((r_m.y < 0) && (norm(r_m - r_c) > radius)) {
-        	if (last < norm(r_m - r_c) && v_m.y < 0)
+    	while ((r_m.y < 0) && (lengh(r_m - r_c) > radius)) {
+        	if (last < lengh(r_m - r_c) && v_m.y < 0)
             	break;
-       		last = norm(r_m - r_c);
-        	count_t += dt;
+       		last = lengh(r_m - r_c);
+        	counter += dt;
         	r_m = r_m + v_m * dt;
         	r_c = r_c + v_c * dt;
-        	v_c = (r_m - r_c) * (1 / norm(r_m - r_c)) * v0;
+        	v_c = (r_m - r_c) * (1 / lengh(r_m - r_c));
     	}
     	if (r_m.y >= 0) {
-        	std::cout << "Mouse in Hole in " << count_t <<std::endl;
+        	std::cout << "Mouse will be alive"<< counter <<std::endl;
     	}
-    	else if (norm(r_m - r_c) <= CatRad) {
-        	std::cout << "Cat ate Mouse in " << count_t << std::endl;
+    	else if (lengh(r_m - r_c) <= radius) {
+        	std::cout << "Cat had a nice dinner" << counter << std::endl;
     	}
-    	else if (last <= norm(r_m - r_c)) {
+    	else if (last <= lengh(r_m - r_c)) {
         	std::cout << "Mouse really fast" << std::endl;
     	}
     	return;
