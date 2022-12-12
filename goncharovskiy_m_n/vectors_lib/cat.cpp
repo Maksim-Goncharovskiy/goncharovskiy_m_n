@@ -1,7 +1,6 @@
 #include "vectors.h"
 #include <iostream>
 #include <cmath>
-#include <iomanip>
 
 int main() {
     Rdec2D r_m = { 0, -10 };
