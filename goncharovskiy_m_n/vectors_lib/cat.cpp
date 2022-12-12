@@ -30,13 +30,13 @@ int main(Rdec2D r_m, Rdec2D r_c, Rdec2D v_m, Rdec2D v_c, double CatRad, double v
         	v_c = (r_m - r_c) * (1 / norm(r_m - r_c)) * v0;
     	}
     	if (r_m.y >= 0) {
-        	std::cout << "Mouse in Hole in " << count_t << " second\n";
+        	std::cout << "Mouse in Hole in " << count_t <<std::endl;
     	}
     	else if (norm(r_m - r_c) <= CatRad) {
-        	std::cout << "Cat ate Mouse in " << count_t << " second\n";
+        	std::cout << "Cat ate Mouse in " << count_t << std::endl;
     	}
     	else if (last <= norm(r_m - r_c)) {
-        	std::cout << "Mouse ran away \n";
+        	std::cout << "Mouse really fast" << std::endl;
     	}
     	return;
 }
