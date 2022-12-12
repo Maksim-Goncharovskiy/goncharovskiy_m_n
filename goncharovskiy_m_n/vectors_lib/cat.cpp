@@ -7,6 +7,7 @@
 int main() {
 	Rdec2D r_m = {0, -10};
 	Rdec2D r_c = {10, 0};
+	Rdec2D r_m = {0, 1};
 	Rdec2D v_c;
 	double radius = 3; 
     
@@ -38,5 +39,4 @@ int main() {
     	else if (last <= lengh(r_m - r_c)) {
         	std::cout << "Mouse really fast" << std::endl;
     	}
-    	return;
 }
