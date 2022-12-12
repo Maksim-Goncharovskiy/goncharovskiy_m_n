@@ -31,10 +31,10 @@ int main() {
         	v_c = (r_m - r_c) * (1 / lengh(r_m - r_c));
     	}
     	if (r_m.y >= 0) {
-        	std::cout << "Mouse will be alive"<< counter <<std::endl;
+        	std::cout << "Mouse will be alive" <<std::endl;
     	}
     	else if (lengh(r_m - r_c) <= radius) {
-        	std::cout << "Cat had a nice dinner" << counter << std::endl;
+        	std::cout << "Cat had a nice dinner"<< std::endl;
     	}
     	else if (last <= lengh(r_m - r_c)) {
         	std::cout << "Mouse really fast" << std::endl;
