@@ -5,8 +5,8 @@
 #include <iomanip>
 
 int main() {
-	Rdec2D r_m;
-	Rdec2D r_c;
+	Rdec2D r_m = {0, -10};
+	Rdec2D r_c = {10, 0};
 	Rdec2D v_c;
 	double radius = 3; 
     
