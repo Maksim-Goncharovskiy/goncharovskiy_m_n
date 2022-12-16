@@ -8,7 +8,7 @@ Rdec2D ToDec(Rpol2D n) {
 	result.y = n.r * sin(n.phi);
 	return result;
 }
-Rpol2D perevod2(Rdec2D n) {
+Rpol2D ToPol(Rdec2D n) {
 	Rpol2D result;
 	result.r = pow(pow(n.x, 2) + pow(n.y, 2), 0.5);
 	result.phi = acos(n.x / (pow((pow(n.x, 2) + pow(n.y, 2)), 0.5)));
