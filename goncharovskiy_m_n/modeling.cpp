@@ -20,7 +20,7 @@ int main() {
 	Rdec2D& v1 = point.v;
 	double t = 1;
 	for (int i = 0; i < 1000; i++) {
-		g = r1 * (-1) * (1 / lengh(r1)) * (1 / pow(lengh(r1), 2));
+		g = -r1  * (1 / Norm(r1)) * (1 / pow(Norm(r1), 2));
 		v1 = v1 + g * t + a1 * t;
 		r1 = r1 + v1 * t;
 		file << r1.x <<";"<<r1.y<<std::endl;
