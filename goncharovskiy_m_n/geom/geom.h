@@ -10,7 +10,7 @@ struct Rpol2D {
 	double phi = 0.0;
 };
 
-Rdec2D perevod1(Rpol2D n);
+Rdec2D ToDec(Rpol2D n);
 
 Rpol2D perevod2(Rdec2D n);
 
