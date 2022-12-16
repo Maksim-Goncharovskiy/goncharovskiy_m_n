@@ -12,7 +12,7 @@ struct Rpol2D {
 
 Rdec2D ToDec(Rpol2D n);
 
-Rpol2D perevod2(Rdec2D n);
+Rpol2D ToPol(Rdec2D n);
 
 double lengh(Rdec2D n);
 
