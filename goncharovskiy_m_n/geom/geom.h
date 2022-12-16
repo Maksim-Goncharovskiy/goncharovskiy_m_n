@@ -5,14 +5,14 @@ struct Rdec2D {
 	double y = 0.0; 
 };
 
-struct Rpd2D {
+struct Rpol2D {
 	double r = 0.0;
 	double phi = 0.0;
 };
 
-Rdec2D perevod1(Rpd2D n);
+Rdec2D perevod1(Rpol2D n);
 
-Rpd2D perevod2(Rdec2D n);
+Rpol2D perevod2(Rdec2D n);
 
 double lengh(Rdec2D n);
 
