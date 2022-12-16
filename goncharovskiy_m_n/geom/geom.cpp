@@ -2,7 +2,7 @@
 #include <cmath>
 #include "geom.h"
 
-Rdec2D perevod1(Rpol2D n) {
+Rdec2D ToDec(Rpol2D n) {
 	Rdec2D result;
 	result.x = n.r * cos(n.phi);
 	result.y = n.r * sin(n.phi);
