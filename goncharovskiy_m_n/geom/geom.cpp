@@ -2,14 +2,14 @@
 #include <cmath>
 #include "geom.h"
 
-Rdec2D perevod1(Rpd2D n) {
+Rdec2D perevod1(Rpol2D n) {
 	Rdec2D result;
 	result.x = n.r * cos(n.phi);
 	result.y = n.r * sin(n.phi);
 	return result;
 }
-Rpd2D perevod2(Rdec2D n) {
-	Rpd2D result;
+Rpol2D perevod2(Rdec2D n) {
+	Rpol2D result;
 	result.r = pow(pow(n.x, 2) + pow(n.y, 2), 0.5);
 	result.phi = acos(n.x / (pow((pow(n.x, 2) + pow(n.y, 2)), 0.5)));
 	return result;
