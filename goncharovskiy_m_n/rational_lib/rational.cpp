@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include "rational.h"
-											// Определение методов класса
+						// Определения методов класса
 void Rational::reduction() {
 	int min;
 	if (abs(numerator_) > abs(denominator_)) {
