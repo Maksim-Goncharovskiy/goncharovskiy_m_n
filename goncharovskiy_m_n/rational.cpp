@@ -1,82 +1,32 @@
 #include <iostream>
 #include <cmath>
+#include "rational.h"
 class Rational {
 private:
 	int numerator_ = 0;
 	int denominator_ = 1;
 
-	void reduction() {
-		int min;
-		if (abs(numerator_) > abs(denominator_)) {
-			min = abs(denominator_);
-		}
-		else {
-			min = abs(numerator_);
-		}
+	void reduction();
 
-		if (numerator_ == 0) {
-			denominator_ = 1;
-		}
-		else {
-			for (int i = min; i > 0; --i) {
-				if (numerator_ % i == 0 && denominator_ % i == 0) {
-					numerator_ /= i;
-					denominator_ /= i;
-					break;
-				}
-			}
-		}
-	}
-
-	void Check(int denom) {
-		if (denom < 0) {
-			throw "Incorrect input data format";
-		}
-		else if (denom == 0) {
-			throw "The denominator cannot be zero";
-		}
-	}
+	void Check(int denom);
 public:
 	// Конструкторы, деструктор
-	Rational() {
-		std::cout << "Constructor has worked -> " << this << std::endl;
-	}
+	Rational() = default;
 
-	Rational(int num, int denom) {
-		Check(denom);
-		numerator_ = num;
-		denominator_ = denom;
-		reduction();
-		std::cout << "Constructor has worked -> " << this << std::endl;
-	}
+	Rational(int num, int denom);
 
-	Rational(const Rational& other) {
-		this->numerator_ = other.numerator_;
-		this->denominator_ = other.denominator_;
-	} //конструктор копирования
+	Rational(const Rational& other);
 
-	~Rational() {
-		std::cout << "Destructor has worked -> " << this << std::endl;
-	}
+	~Rational() = default;
 
 	Rational& operator=(const Rational& other);
 
 	// Получение и запись числителя и знаменателя
-	int get_num() {
-		return numerator_;
-	}
-	int get_denom() {
-		return denominator_;
-	}
+	int get_num();
+	int get_denom();
 
-	void set_num(int new_num) {
-		numerator_ = new_num;
-		reduction();
-	}
-	void set_denom(int new_denom) {
-		denominator_ = new_denom;
-		reduction();
-	}
+	void set_num(int new_num);
+	void set_denom(int new_denom);
 
 	// Арифметика
 	Rational& operator+=(const Rational& other);
@@ -102,29 +52,73 @@ public:
 	bool operator<=(const Rational& other);
 
 	// Ввод и вывод 
-	std::ostream& writeTo(std::ostream& ostrm) const {
-		ostrm << this->numerator_ << "/" << this->denominator_;
-		return ostrm;
-	}
+	std::ostream& writeTo(std::ostream& ostrm) const;
 
-	std::istream& readFrom(std::istream& istrm) {
-		int num = 6;
-		int denom = 6;
-		char sep = ' ';
-		istrm >> num >> sep >> denom;
-		Check(denom);
-		if (sep == '/') {
-			numerator_ = num;
-			denominator_ = denom;
-			reduction();
-		}
-		else {
-			throw "Incorrect input data format";
-		}
-		return istrm;
-	}
+	std::istream& readFrom(std::istream& istrm);
 };
 
+void Rational::reduction() {
+	int min;
+	if (abs(numerator_) > abs(denominator_)) {
+		min = abs(denominator_);
+	}
+	else {
+		min = abs(numerator_);
+	}
+
+	if (numerator_ == 0) {
+		denominator_ = 1;
+	}
+	else {
+		for (int i = min; i > 0; --i) {
+			if (numerator_ % i == 0 && denominator_ % i == 0) {
+				numerator_ /= i;
+				denominator_ /= i;
+				break;
+			}
+		}
+	}
+}
+
+void Rational::Check(int denom) {
+	if (denom < 0) {
+		throw "Incorrect input data format";
+	}
+	else if (denom == 0) {
+		throw "The denominator cannot be zero";
+	}
+}
+
+// Определения конструкторов
+Rational::Rational(int num, int denom) {
+	Check(denom);
+	numerator_ = num;
+	denominator_ = denom;
+	reduction();
+	std::cout << "Constructor has worked -> " << this << std::endl;
+}
+Rational::Rational(const Rational& other) {
+	this->numerator_ = other.numerator_;
+	this->denominator_ = other.denominator_;
+}
+
+//Определения сетеров, гетеров
+int Rational::get_num() {
+	return numerator_;
+}
+int Rational::get_denom() {
+	return denominator_;
+}
+void Rational::set_num(int new_num) {
+	numerator_ = new_num;
+	reduction();
+}
+void Rational::set_denom(int new_denom) {
+	denominator_ = new_denom;
+	reduction();
+}
+
+//Присваивание
 Rational& Rational::operator=(const Rational& other) {
 	this->numerator_ = other.numerator_;
 	this->denominator_ = other.denominator_;
@@ -281,6 +275,27 @@ bool Rational::operator<=(const Rational& other) {
 }
 
 // Ввод и вывод:
+std::ostream& Rational::writeTo(std::ostream& ostrm) const {
+	ostrm << this->numerator_ << "/" << this->denominator_;
+	return ostrm;
+}
+std::istream& Rational::readFrom(std::istream& istrm) {
+	int num = 6;
+	int denom = 6;
+	char sep = ' ';
+	istrm >> num >> sep >> denom;
+	Check(denom);
+	if (sep == '/') {
+		numerator_ = num;
+		denominator_ = denom;
+		reduction();
+	}
+	else {
+		throw "Incorrect input data format";
+	}
+	return istrm;
+}
+
 std::ostream& operator<<(std::ostream& ostrm, Rational& x) {
 	return x.writeTo(ostrm);
 }
