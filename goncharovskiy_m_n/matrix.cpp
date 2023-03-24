@@ -1,3 +1,7 @@
+#include <iostream>
+#include <vector>
+#include <utility>
+
 class MatrixS {
 private:
 	ptrdiff_t m_ = 0;
@@ -45,16 +49,27 @@ public:
 		std::cout <<'{' << m_ << 'x' << n_<< '}' << std::endl;
 	}
 	void resize(const ptrdiff_t new_m, const ptrdiff_t new_n) {
-		if (new_m < this->m_ && new_n < this->n_) {
-			MatrixS copy = *this;
-			this->matrix_.clear();
-			for (int i = 0; i < new_m; i++) {
-				for (int j = 0; j < new_n; j++) {
-					matrix_.push_back(copy.at(i, j));
+		MatrixS copy = *this;
+		this->matrix_.clear();
+		for (int i = 0; i < new_m; i++) {
+			for (int j = 0; j < new_n; j++) {
+				if (i < copy.m_ && j < copy.n_) {
+					this->matrix_.push_back(copy.at(i, j));
+				}
+				else {
+					this->matrix_.push_back(0);
 				}
 			}
 		}
 		this->m_ = new_m;
 		this->n_ = new_n;
 	}
+	
 };
+
+int main() {
+	MatrixS a(3, 3);
+	a.print();
+	a.resize(4, 2);
+	a.print();
+}
