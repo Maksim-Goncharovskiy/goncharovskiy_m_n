@@ -22,7 +22,6 @@ enum position {
 
 struct Triangle {
 	std::vector<Point*> vertices;
-	std::vector<Triangle*> adjacent;
 
 	Triangle(Point* A, Point* B, Point* C) {
 		vertices.push_back(A);
@@ -60,6 +59,32 @@ struct Triangle {
 
 };
 
+//Гарантируется, что подается на вход два разных существующих треугольника
+bool Check(const Triangle& lhs, const Triangle& rhs) {
+	Point* A = lhs.vertices[0];
+	Point* B = lhs.vertices[1];
+	Point* C = lhs.vertices[2];
+
+	Point* D = rhs.vertices[0];
+	Point* E = rhs.vertices[1];
+	Point* F = rhs.vertices[2];
+
+	if (((A == D) || (A == E) || (A == F)) && ((B == D) || (B == E) || (B == F))){
+		return true;
+	}
+	else if (((A == D) || (A == E) || (A == F)) && ((C == D) || (C == E) || (C == F))) {
+		return true;
+	}
+	else if (((B == D) || (B == E) || (B == F)) && ((C == D) || (C == E) || (C == F))) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+
+
 int main() {
 	int N = 0; // количество точек в триангуляции
 	std::cin >> N;
@@ -81,10 +106,53 @@ int main() {
 				Point* A = result[j].vertices[0];
 				Point* B = result[j].vertices[1];
 				Point* C = result[j].vertices[2];
-				//!!! Тут подумать, нужно разбить исходный треугольник на три, но они по отношению друг другу странненькие, пока что хотя бы просто разбить
-				result[j] = Triangle(A, B, &input[i]);
+
+				result.push_back(Triangle(A, B, &input[i]));
 				result.push_back(Triangle(B, C, &input[i]));
 				result.push_back(Triangle(A, C, &input[i]));
+
+				std::vector<Triangle>::iterator it = result.begin() + j;
+				result.erase(it);
+				break;
+			}
+
+			else if (new_point == on_1) {
+				Point* A = result[j].vertices[0];
+				Point* B = result[j].vertices[1];
+				Point* C = result[j].vertices[2];
+
+				result.push_back(Triangle(A, C, &input[i]));
+				result.push_back(Triangle(B, C, &input[i]));
+
+				std::vector<Triangle>::iterator it = result.begin() + j;
+				result.erase(it);
+				break;
+			}
+
+			else if (new_point == on_2) {
+				Point* A = result[j].vertices[0];
+				Point* B = result[j].vertices[1];
+				Point* C = result[j].vertices[2];
+
+				result.push_back(Triangle(A, C, &input[i]));
+				result.push_back(Triangle(A, B, &input[i]));
+
+				std::vector<Triangle>::iterator it = result.begin() + j;
+				result.erase(it);
+				break;
+			}
+
+			else if (new_point == on_3) {
+				Point* A = result[j].vertices[0];
+				Point* B = result[j].vertices[1];
+				Point* C = result[j].vertices[2];
+
+				result.push_back(Triangle(A, B, &input[i]));
+				result.push_back(Triangle(B, C, &input[i]));
+
+				std::vector<Triangle>::iterator it = result.begin() + j;
+				result.erase(it);
+				break;
 			}
 		}
 	}
